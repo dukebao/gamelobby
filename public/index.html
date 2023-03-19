@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Player Points Tracker</title>
+  </head>
+  <body>
+    <h1>Player Points Tracker</h1>
+
+    <form id="add-player-form">
+      <h2>Add Player</h2>
+      <label for="name">Name:</label>
+      <input type="text" name="name" required>
+      <br>
+      <label for="points">Points:</label>
+      <input type="number" name="points" value="0" required>
+      <br>
+      <button type="submit">Add Player</button>
+    </form>
+
+    <h2>Player List</h2>
+    <table id="player-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Points</th>
+          <th>Update Points</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      const playerTableBody = document.querySelector('#player-table tbody');
+      const addPlayerForm = document.querySelector('#add-player-form');
+
+      addPlayerForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(addPlayerForm);
+        const name = formData.get('name');
+        const points = formData.get('points');
+
+        fetch('/players', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            points: parseInt(points)
+          })
+        })
+          .then(response => response.json())
+          .then(player => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${player.name}</td>
+              <td>${player.points}</td>
+              <td>
+                <form>
+                  <input type="number" name="points" value="${player.points}" required>
+                  <button type="submit">Update</button>
+                </form>
+              </td>
+            `;
+            playerTableBody.appendChild(row);
+
+            const updateForm = row.querySelector('form');
+            updateForm.addEventListener('submit', (event) => {
+              event.preventDefault();
+              const newPoints = parseInt(updateForm.elements.points.value);
+              fetch(`/players/${player.name}`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  points: newPoints
+                })
+              })
+                .then(response => response.json())
+                .then(player => {
+                  row.innerHTML = `
+                    <td>${player.name}</td>
+                    <td>${player.points}</td>
+                    <td>
+                      <form>
+                        <input type="number" name="points" value="${player.points}" required>
+                        <button type="submit">Update</button>
+                      </form>
+                    </td>
+                  `;
+                  playerTableBody.appendChild(row);
+                })
+                .catch(error => console.error(error));
+            });
+          })
+          .catch(error => console.error(error));
+      });
+
+      fetch('/players')
+        .then(response => response.json())
+        .then(players => {
+          players.forEach(player => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${player.name}</td>
+              <td>${player.points}</td>
+              <td>
+                <form>
+                  <input type="number" name="points" value="${player.points}" required>
+                  <button type="submit">Update</button>
+                </form>
+              </td>
+            `;
+            playerTableBody.appendChild(row);
+          });
+        })
+        .catch(error => console.error(error));
+    </script>
+    </body>
+</html>
+
+

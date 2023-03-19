@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Player Points Tracker - Info</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 0.5em;
+    }
+    th {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>麻將排型 marjong tile type </h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>牌型 tile type</th>
+        <th>翻數 multiplyer</th>
+        <th>舉例 example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const [key, value] of Object.entries(infoData)) { %>
+      <tr>
+        <td><%= key %></td>
+        <td><%= value[0] %></td>
+        <td><%= value[1] %></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</body>
+</html>

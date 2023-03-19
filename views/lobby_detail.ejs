@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Player Points Tracker - Info</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 0.5em;
+    }
+
+    th {
+      background-color: #ccc;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <h1>
+    <%= lobby_name %>
+  </h1>
+  <h2>
+    Game type: Marjong
+  </h2>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Player Name</th>
+          <th>Points</th>
+          <th>Delete Player</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% playerPoint.forEach(function(player) { %>
+          <tr>
+            <td>
+              <%= player.player %>
+            </td>
+            <td>
+              <%= player.point %>
+            </td>
+            <td><a href="<%= lobby_name %>/<%= player.player %>/<%= player.player_pos %>/delete">Delete</a></td>
+
+          </tr>
+          <% }); %>
+      </tbody>
+
+    </table>
+  </div>
+  <div>
+    add Player
+  </div>
+
+  <form action="/lobby/<%= lobby_name %>/addPlayer" method="POST">
+    <select name="playerName">
+      <% let existedPlayer=[]; %>
+        <% playerPoint.forEach(function(player) { %>
+          <% existedPlayer.push(player.player); %>
+            <% }); %>
+              <% nameList.forEach(function(name) { %>
+                <% if (!existedPlayer.includes(name.name)) { %>
+                  <option value="<%= name.name %>">
+                    <%= name.name %>
+                  </option>
+                  <% } %>
+                    <% }); %>
+    </select>
+    <button type="submit"> Add Player </button>
+  </form>
+  <div>
+    <button onclick="window.location.href='/lobby'">Back to lobby</button>
+  </div>
+  <div>
+    <form id="addScoreForm" action="/player/<%= lobby_name %>/addScore" method="POST">
+      <select id="playerNameSelect" name="playerName">
+        <% nameList.forEach(function(name) { %>
+          <% if (existedPlayer.includes(name.name)) { %>
+            <option value="<%= name.name %>">
+              <%= name.name %>
+            </option>
+            <% } %>
+              <% }); %>
+      </select>
+      <input type="number" name="score" placeholder="Enter score">
+      <button type="submit">Add Score</button>
+    </form>
+  </div>
+
+  <script>
+    const addScoreForm = document.getElementById('addScoreForm');
+    const playerNameSelect = document.getElementById('playerNameSelect');
+
+    playerNameSelect.addEventListener('change', () => {
+      const selectedName = playerNameSelect.value; // this is the player
+      addScoreForm.action = `/player/${lobby_name}/addScore`;
+    });
+  </script>
+
+
+
+</body>
+
+</html>

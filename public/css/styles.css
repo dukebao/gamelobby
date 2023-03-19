@@ -1,0 +1,123 @@
+/* Style for the page title */
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: brown;
+}
+
+/* Style for the section title */
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Style for the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Style for the table header */
+th {
+    background-color: #ccc;
+    border: 1px solid black;
+    font-weight: bold;
+    padding: 1rem;
+    text-align: left;
+}
+
+/* Style for the table rows */
+tr {
+    border: 1px solid black;
+}
+
+/* Style for the table data */
+td {
+    border: 1px solid black;
+    padding: 1rem;
+    text-align: left;
+}
+
+/* Style for the "Add Player" section */
+form {
+    margin-top: 1rem;
+}
+
+/* Style for the "Back to lobby" button */
+button {
+    background-color: #f5f5f5;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+/* Style for the "Add Score" section */
+#addScoreForm {
+    margin-top: 1rem;
+}
+
+/* Style for the "Add Score" button */
+#addScoreForm button {
+    background-color: #f5f5f5;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 600px) {
+    /* Style for the page title */
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Style for the section title */
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    /* Style for the table header */
+    th {
+        padding: 0.5rem;
+    }
+
+    /* Style for the table data */
+    td {
+        padding: 0.5rem;
+    }
+
+    /* Style for the "Add Player" section */
+    form {
+        margin-top: 0.5rem;
+    }
+
+    /* Style for the "Back to lobby" button */
+    button {
+        font-size: 0.75rem;
+        padding: 0.75rem;
+    }
+
+    /* Style for the "Add Score" section */
+    #addScoreForm {
+        margin-top: 0.5rem;
+    }
+
+    /* Style for the "Add Score" button */
+    #addScoreForm button {
+        font-size: 0.75rem;
+        padding: 0.75rem;
+    }
+}
+
+/* Style for the table container */
+.table-container {
+    max-height: calc(100vh - 300px); /* adjust the value as needed */
+    overflow-y: auto;
+  }

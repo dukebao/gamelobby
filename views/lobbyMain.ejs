@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Player Points Tracker - Info</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Lobby List</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Lobby Name</th>
+        <th>Lobby Player 1</th>
+        <th>Lobby Player 2</th>
+        <th>Lobby Player 3</th>
+        <th>Lobby Player 4</th>
+        <th>Delete Lobby</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% lobbyList.forEach(function(lobby) { %>
+        <tr>
+          <td><a href="lobby/<%= lobby.name %>"><%= lobby.name %></a></td>
+          <td><%= lobby.player1_name %></td>
+          <td><%= lobby.player2_name %></td>
+          <td><%= lobby.player3_name %></td>
+          <td><%= lobby.player4_name %></td>
+          <td><a href="lobby/<%= lobby.name %>/delete">Delete</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+ <h2>Create a New Lobby</h2>
+  <form action="/lobby" method="post">
+    <label for="lobbyName">Lobby Name:</label>
+    <input type="text" id="lobbyName" name="lobbyName">
+    <button type="submit">Create Lobby</button>
+  </form>
+<h2>Create New Player</h2>
+  <form action="/createPlayer" method="post">
+    <label for="playerName">Player Name:</label>
+    <input type="text" id="playerName" name="playerName">
+    <button type="submit">Create Player</button>
+  </form>
+</body>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% nameList.forEach(function(player) { %>
+        <tr>
+          <td><%= player.name %></td>
+          <td><a href="player/<%= player.name %>/delete">Delete</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  
+</div>
+</html>
