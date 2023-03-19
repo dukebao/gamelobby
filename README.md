@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # GameLobby
 game lobby web-app
 
@@ -58,4 +57,3 @@ Here are some screenshots of what GameLobby looks like:
 
 Contributing
 If you're interested in contributing to GameLobby, please visit our GitHub repository at [insert link here]. We welcome any feedback, bug reports or feature requests you may have!
->>>>>>> e262fbb3ff2cb5a2177b454eb01e5112aed9cd60
