@@ -24,4 +24,4 @@ From there, you can use the following routes:
 
 # Contributing
 
-Contributing If you're interested in contributing to GameLobby, please visit our GitHub repository at [insert link here]. We welcome any feedback, bug reports or feature requests you may have!
+Contributing If you're interested in contributing to GameLobby, please visit our GitHub repository at [https://github.com/dukebao/gamelobby]. We welcome any feedback, bug reports or feature requests you may have!
