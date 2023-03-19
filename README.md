@@ -1,4 +1,5 @@
 #GameLobby
+
 ##Description
 GameLobby is a web-app that allows players to keep track of their points in various house games such as Mahjong, Poker and Bridge. It is a simple and easy-to-use app that helps players stay organized and focused on their game.
 
